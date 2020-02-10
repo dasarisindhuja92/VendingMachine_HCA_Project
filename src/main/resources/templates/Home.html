@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Vending Machine</title>
+</head>
+<body>
+
+	<div class="container" align="center">
+		<div class="page-header">
+			<h1>Welcome to our Vending Machine</h1>
+		</div>
+		<form name="myForm">
+
+			<label for="fname">Insert quarter </label><input type="text"
+				id="fname" name="fname"><br> <br> <input
+				type="button" value="Redirect Me" onclick="Redirect()" /> <br>
+			<br>
+			<th:block th:if="${!isGiveAway}">
+				<h1>We are Offering Give Away</h1>
+				<input type="button" value="Give Away" onclick="RedirectGiveAway()" />
+			</th:block>
+			<br>
+
+
+			<h1>Products Available in Vending Machine</h1>
+
+			<table Id="Table" class="table table-striped">
+				<tr>
+					<td>Product Name</td>
+					<td>Available Count</td>
+				</tr>
+
+				<tr class="bg-primary" th:each="countList: ${countList}">
+
+					<td th:text="${countList.getName()}">Product Name</td>
+					<td th:text="${countList.getCount()}">Count</td>
+
+				</tr>
+			</table>
+
+		</form>
+		<img src="/images/coke.jpg" width="250" height="250"> <img
+			src="/images/fanta.jpg" width="250" height="250"> <img
+			src="/images/pepsi.jpg" width="250" height="250"> <img
+			src="/images/sprite.jpg" width="250" height="250">
+	</div>
+
+</body>
+<script type="text/javascript">
+function Redirect() {
+	var emailID = document.myForm.fname.value;
+	if(emailID != 25)
+		alert("Please enter only quarters");
+	else{
+		
+		 window.location = "http://localhost:8080/vendingMachineInsert";
+	}
+	
+	
+	
+	
+ };
+ 
+ function RedirectGiveAway() {
+		
+			
+			 window.location = "http://localhost:8080/vendingMachineInsert/giveAway";
+		}
+ 
+		
+		
+		
+	 
+</script>
+
+</html>
